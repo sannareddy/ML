@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class PurchaseTest {
+	private ArrayList<Integer> postcodes;                      // List to store  postcodes
+	private ArrayList<Float> purchaseAmounts;				   // List to store  purchase amounts 	
+	private ArrayList<Float> totalPayables;					   // List to store  total payables
+	final int N;
+	
+	//Initialization Block
+	{
+		Random randomGen = new Random();
+		N=3;//randomGen.nextInt(4)+6; 						// Generates a Random Number between 6 and 9		
+	}
+	
+	//Constructor to initialize ArrayLists	
+	PurchaseTest(){
+		postcodes = new ArrayList<Integer>(N);
+		purchaseAmounts = new ArrayList<>(N);
+		totalPayables = new ArrayList<>(N);		
+	}
+	
+	//Method to initiate reading , validating and storing postcodes and purchase amounts
+	public	void createOrders(){
+		Scanner sc = new Scanner(System.in);
+		int postcode;
+		float purchaseAmount;
+		boolean result = true;
+		if(this.postcodes.size()>0){
+			System.out.println("Attention ! Few entries found, entering new values would replace existed values. Do you want to continue? Y , N ");
+			if(sc.nextLine().charAt(0)=='Y'){
+				this.postcodes.clear();
+				this.purchaseAmounts.clear();
+				this.totalPayables.clear();
+			}else{
+				return;
+			}
+		}
+		System.out.println("Hi There, You need to enter "+N+" Orders information");
+		for(int i=1;i<=N;i++){
+			do{				
+				System.out.println("Enter postcode for order->"+i);			
+				postcode = Integer.parseInt(sc.nextLine());
+				result = validatePostCode(postcode);
+				if(!result){
+					System.out.println("Postcode should be greater than 4120 and less than 4124");
+				}
+				System.out.println(result);
