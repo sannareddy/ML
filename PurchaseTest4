@@ -1,0 +1,57 @@
+@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
+		int choice=8;
+		Scanner sc = new Scanner(System.in);
+		PurchaseTest testObj=new PurchaseTest();
+		Purchase purchaseObj=new Purchase();
+		System.out.println("Welcome to Online Grocery Store");
+		ArrayList<Integer> dupPostcodes = null;
+		ArrayList<Float> dupPurchaseAmounts = null;
+		ArrayList<Float> dupTotalPayables = null;
+		do{
+			testObj.displayMenu();
+			choice = Integer.parseInt(sc.nextLine());
+			switch(choice){
+			case 1:
+				testObj.createOrders();		
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();
+				break;
+			case 2:
+				testObj.displayTotalPayables();				
+				dupTotalPayables = (ArrayList<Float>) testObj.totalPayables.clone();
+				break;			
+			case 3:			
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();
+				dupTotalPayables = (ArrayList<Float>) testObj.totalPayables.clone();
+				purchaseObj.displayPremiumPayables(dupPostcodes,dupPurchaseAmounts,dupTotalPayables);			
+				break;
+			case 4:		
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();				
+				purchaseObj.displayCostliestOrders(dupPostcodes,dupPurchaseAmounts);
+				break;
+			case 5:					
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();	
+				purchaseObj.displayCheapestOrders(dupPostcodes, dupPurchaseAmounts);
+				break;
+			case 6:	
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();
+				dupTotalPayables = (ArrayList<Float>) testObj.totalPayables.clone();
+				purchaseObj.sortPayables(dupPostcodes, dupPurchaseAmounts, dupPurchaseAmounts);
+				break;
+			case 7:
+				int postcode;
+				System.out.print("Enter a postcode:");
+				postcode = Integer.parseInt(sc.nextLine());
+				dupPostcodes = (ArrayList<Integer>)testObj.postcodes.clone();
+				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();
+				dupTotalPayables = (ArrayList<Float>) testObj.totalPayables.clone();
+				purchaseObj.displayPurchases(postcode,dupPostcodes,dupPurchaseAmounts,dupTotalPayables);
+			}			
+		}while(choice != 8);
+		
+	}
