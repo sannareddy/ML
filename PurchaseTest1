@@ -1,0 +1,50 @@
+			}while(!result);
+						
+			do{
+				System.out.println("Enter purchase amount for order->"+i);			
+				purchaseAmount = Float.parseFloat(sc.nextLine());
+				result = validateAmount(purchaseAmount);
+				if(!result){
+					System.out.println("Amount should be greater than 59$ and less than 501$");
+				}
+			}while(!result);			
+			storeOrder(postcode, purchaseAmount);		// Stores the order in ArrayList			
+		}
+		
+	} 
+	
+	// Method to display the total payable for all customers 
+	public void displayTotalPayables(){
+		float purchaseAmount;
+		int postcode;
+		/*
+		 * When this choice is mode twice, there is a chance of recalculating the totalPayables again though it is done already.
+		 * To avoid such situation we are finding the total number of new entries by calculating the difference between both the collections. 
+		 * If no difference in sizes, we assume that the calculation is made already so the loop will not be processed   
+		 */
+		int newEntries = Math.abs(totalPayables.size()-postcodes.size());		
+		int j=totalPayables.size();
+		//Loop to calculate total payables
+		for(int i=0;i<newEntries;i++,j++){
+			purchaseAmount = this.purchaseAmounts.get(j);
+			postcode = postcodes.get(j);
+			switch(postcode){
+			case 4121:
+				if(purchaseAmount < 400 ){
+					this.totalPayables.add(purchaseAmount+8);
+				}else{
+					this.totalPayables.add(purchaseAmount);
+				}
+				break;
+			case 4122:
+				this.totalPayables.add(purchaseAmount+12);
+				break;
+			case 4123:
+				this.totalPayables.add(purchaseAmount+15);
+				break;
+			}	
+		}
+		//Loop to print total payables
+		for(int i=0;i<this.postcodes.size();i++){
+			System.out.println(this.postcodes.get(i)+" ------------  "+this.totalPayables.get(i) );
+		}
