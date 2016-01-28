@@ -1,0 +1,56 @@
+}
+	
+	
+	// Method to validate postcodes
+	private boolean validatePostCode(int postcode){
+		if(postcode<4121 || postcode>4123){
+			return false;
+		}
+		return true;
+	}
+	
+	//Method to validate purchase amounts
+	private boolean validateAmount(float purchaseAmount){
+		if(purchaseAmount < 60 || purchaseAmount>500){
+			return false;
+		}
+		return true;
+	}	
+	
+	/* Method to store postcode and purchase amount for N customers */
+	private void storeOrder(int postcode,float purchaseAmount){
+		postcodes.add(postcode);
+		purchaseAmounts.add(purchaseAmount);
+	}
+		
+	private void displayMenu(){
+		System.out.println("Enter your choice");
+		System.out.println("1)Read, validate, and store postcode, and purchase amount for "+N+" customers");
+		System.out.println("2)Calculate, store and display the total payable for all customers");
+		System.out.println("3)Display postcode, and total payable for purchase amounts of $400 and above");
+		System.out.println("4)Find and display the postcode/s with the highest purchase amount");
+		System.out.println("5)Find and display the postcode/s with the lowest purchase amount");
+		System.out.println("6)Sort and display the total payable in descending order");
+		System.out.println("7)Search and display all purchase amount and Total payable with a given postcode");
+		System.out.println("8)Exit from the application");
+	}
+	public static void main(String[] args) {
+		int choice=8;
+		Scanner sc = new Scanner(System.in);
+		PurchaseTest testObj=new PurchaseTest();
+		System.out.println("Welcome to Online Grocery Store");
+		do{
+			testObj.displayMenu();
+			choice = Integer.parseInt(sc.nextLine());
+			switch(choice){
+			case 1:
+				testObj.createOrders();
+				break;
+			case 2:
+				testObj.displayTotalPayables();
+				break;			
+			}			
+		}while(choice != 8);
+		
+	}
+}
