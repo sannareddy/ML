@@ -61,6 +61,9 @@
 				break;
 			case 8:
 				System.out.println("Thank you for using Online Grocery Store");
+				break;
+			default:
+				System.out.println("Entered invalid choice");
 			}			
 		}while(choice != 8);
 		
