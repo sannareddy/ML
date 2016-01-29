@@ -18,6 +18,10 @@
 				dupPurchaseAmounts = (ArrayList<Float>)testObj.purchaseAmounts.clone();
 				break;
 			case 2:
+				if(dupPostcodes == null || dupPurchaseAmounts== null){
+					System.out.println("You can enter this choice after choice 1 only");
+					continue;
+				}
 				testObj.displayTotalPayables();				
 				dupTotalPayables = (ArrayList<Float>) testObj.totalPayables.clone();
 				break;			
